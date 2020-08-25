@@ -1,38 +1,404 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "Audrey-Normal";
+  src: url(../src/Audrey/Audrey-Normal.otf) format("opentype");
+}
+
+:root {
+  --grey-light-1: #f7f7f7;
+  --main-red: rgb(145 55 39 /89%);
+  --brighter-red: rgb(187, 43, 43);
+  --main-spacing: 0.3rem;
+  --smallWidth: 85vw;
+  --maxWidth: 64rem;
+  /*grid*/
+  --gutter-vertical: 8rem;
+  --gutter-horizontal: 6rem;
+}
+
+.logo {
+  width: 30rem;
+  height: 15rem;
+}
+
+body {
+  padding-top: 16.8rem;
+  line-height: 1.4;
+  font-family: "Audrey-Normal";
+  background-color: rgba(231, 209, 205, 0.89);
+}
+
+
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--grey-light-1);
+  padding: 0.75rem 3rem;
+
+  z-index: 30;
+}
+
+.navbar__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar__btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navbar__icon {
+  font-size: 2.4rem;
+  color: var(--main-red);
+}
+
+/* when the icon is set to false*/
+.navbar__links {
+  height: 0;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+/*when the icon is set to true*/
+.navbar__links--show {
+  height: 20rem;
+}
+
+.navbar__links a {
+  display: block;
+  text-decoration: none;
+  color: var(--main-red);
+  padding: 1rem 0;
   text-align: center;
+  font-size: 3rem;
+  /*font-weight: 600;*/
+  letter-spacing: var(--main-spacing);
+  transition: all .2s ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar__links a:hover {
+  background: rgba(231, 209, 205, 0.89);
+  color: white;
+  transform: translateY(-1rem) scale(1.03); 
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.logo {
+  background-color: transparent;
+}
+
+/*big screen*/
+@media screen and (min-width: 768px) {
+  .navbar__btn {
+    display: none;
+  }
+  .navbar__center {
+    margin: 0 auto;
+    display: flex;
+  }
+  .navbar__links {
+    height: auto;
+    display: flex;
+    margin-left: 15rem;
+  }
+  .navbar__links a {
+    margin: 4rem 4rem;
+    padding: 0.5rem 0;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*home*/
+
+.header {
+  min-height: calc(100vh - 17rem);
+  background: url("./images/background.jpg") no-repeat center/cover;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  overflow: hidden;
+}
+
+.banner {
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--grey-light-1);
+  text-align: center;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+  border-radius: 2px;
+  padding-bottom: 1.5rem;
+}
+
+.btn {
+  font-family: "Audrey-Normal";
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  padding-bottom: 1rem;
+}
+
+.btn:hover {
+  background: rgba(231, 209, 205, 0.89);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.col-1-of-2 {
+  width: calc((100% - var(--gutter-horizontal)) / 2);
+  float: left;
+}
+
+.col-1-of-2:not(:last-child) {
+  margin-right: var(--gutter-horizontal);
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.heading-tertiary {
+  color: var(--brighter-red);
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  letter-spacing: var(--main-spacing);
+}
+
+.composition {
+  position: relative;
+}
+
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  position: absolute;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+
+.composition__photo--p2 {
+  right: 0;
+  top: 2rem;
+}
+
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+
+.composition__photo:hover {
+  outline: 1.5rem solid white;
+  transform: scale(1.05) translateY(-0.5rem);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+
+.composition__photo:not(:hover) {
+  transform: scale(0.95);
+}
+
+.card {
+  max-width: 100rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 10rem;
+}
+
+.card__pic {
+  flex-basis: 37%;
+}
+
+.card__pic--contact {
+  flex-basis: 40%;
+}
+
+.spice {
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+}
+
+.card__info {
+  flex-basis: 60%;
+}
+
+.footer {
+  margin: 0 auto;
+  background-color: var(--grey-light-1);
+  display: flex;
+  padding: 7rem 3rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  padding-bottom: 0rem;
+}
+
+.footer__column {
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.footer__icon {
+  color: var(--brighter-red);
+  font-size: 5rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .card {
+    flex-wrap: nowrap;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+/*about*/
+
+.section {
+  padding: 8rem 0;
+  margin: 0 auto;
+
+  max-width: var(--maxWidth);
+}
+
+.section--intro {
+  padding: 4rem 0;
+  max-width: 114rem;
+  margin-bottom: 20rem;
+}
+
+.section--about {
+  max-width: 114rem;
+  padding-bottom: 0rem;
+}
+
+.section--contact {
+  max-width: 114rem;
+  padding-bottom: 0rem;
+}
+
+.section-menu {
+  max-width: 114rem;
+}
+
+.heading-primary {
+  color: var(--main-red);
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  letter-spacing: var(--main-spacing);
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.heading-primary--banner {
+  color: var(--grey-light-1);
+  font-family: "Audrey-Normal";
+  margin-bottom: 2rem;
+}
+
+.heading-primary--about {
+  margin-bottom: 10rem;
+}
+
+.heading-primary--contact {
+  margin-bottom: 10rem;
+}
+
+.heading-primary--Menu {
+  margin-bottom: 5rem;
+}
+
+.section__words {
+  color: white;
+  font-family: "Audrey-Normal";
+  font-size: 2.3rem;
+  line-height: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+.section__words--banner {
+  color: var(--grey-light-1);
+  font-family: "Audrey-Normal";
+}
+
+.section__words--intro {
+  line-height: 2.5rem;
+  margin-bottom: 8rem;
+}
+
+.section__words--card {
+  max-width: 45rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section__words--footer {
+  color: var(--brighter-red);
+  font-size: 1.7rem;
+  text-align: center;
+  line-height: 3rem;
+}
+
+/*menu*/
+.menu {
+  max-width: 114rem;
+}
+
+/*contact*/
+.heading-secondary {
+  color: var(--main-red);
+  font-family: "Audrey-Normal";
+  /* font-weight: 700;*/
+  font-size: 3rem;
+  text-transform: capitalize;
+  letter-spacing: var(--main-spacing);
+}
+
+.heading-secondary--intro {
+  margin-bottom: 8rem;
+  text-align: center;
+}
+
+.heading-secondary--card {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section__words--contact {
+  margin-bottom: 6rem;
+  font-size: 2.5rem;
 }
